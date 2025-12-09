@@ -1,11 +1,17 @@
 #!/bin/bash
 
+echo "running db_app_deploy.sh"
+
 # change to the directory of the currently running script
 CURRENT_DIR="$(dirname "$(realpath "$0")")"
 cd ${CURRENT_DIR}
 
+echo "including ./config/custom_container_config.sh"
+
 # load the custom container configuration file (to define custom credentials)
 source ./config/custom_container_config.sh
+
+echo "including the db_app_deploy_functions"
 
 # load the db_app_deploy.sh function definitions:
 source ./functions/db_app_deploy_functions.sh

@@ -1,5 +1,3 @@
-# Ignore all content in the DSC directory
-docker/src/DSC/*
+/docker/secrets/PRI_local_secrets.sh
 
-# Do not ignore the .gitkeep file for the DSC directory, so the directory itself is tracked.
-!docker/src/DSC/.gitkeep
+/secrets

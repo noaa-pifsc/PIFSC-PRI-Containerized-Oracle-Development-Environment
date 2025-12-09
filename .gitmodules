@@ -1,0 +1,3 @@
+[submodule "modules/PRI"]
+	path = modules/PRI
+	url = git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git
