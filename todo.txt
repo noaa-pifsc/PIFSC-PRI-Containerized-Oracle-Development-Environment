@@ -22,6 +22,8 @@ To do:
 		_ CAS
 		_ CEN_UTILS
 		_ PRI
+			_ PRI
+			_ DSC
 	
 	_ chain in a quick preparation script that renames certain files (GIM_crontab.dev.txt) or references certain files
 		
