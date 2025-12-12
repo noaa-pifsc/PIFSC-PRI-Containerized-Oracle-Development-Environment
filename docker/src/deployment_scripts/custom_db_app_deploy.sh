@@ -36,6 +36,13 @@ $SYS_CREDENTIALS
 EOF
 
 
+	# grant the PRI schema privileges on the DSC schema
+sqlplus -s /nolog <<EOF
+@queries/grant_PRI_privs.sql
+$SYS_CREDENTIALS
+EOF
+
+
 	echo "Create the PRI objects"
 
 	# execute the PRI database deployment scripts

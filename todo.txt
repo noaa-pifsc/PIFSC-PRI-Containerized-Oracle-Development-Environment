@@ -1,20 +1,18 @@
 To do:
 
-	_ update PRI repo 
-		change the directory structure (so it can use a relative path for the docker source code)
-		update 
-		
-	_ update PRI CODE repo
-		copy the PRI repo docker code into the docker/pri_app_docker folder
-		update the .env file
-		update the docker-compose-dev.yml and docker-compose-test.yml to remove the ords container
+	X update PRI CODE repo
+		X implement PRI and DSC as submodules
 		
 		
 	_ fork DSC so the dependencies are available
 		
 
-	_ Dockerfile.deploy is not successfully converting line endings with dos2unix
+	X Dockerfile.deploy is not successfully converting line endings with dos2unix (there was an unreadable character that was preventing a file from being converted)
 
+	convert to submodule:
+		X PRI (update the custom prep script to not clone the php shared library and for the Dockerfile to copy it from the modules directory)
+			X php shared library
+			X Container Deployment Scripts
 
 
 	_ convert DB dependencies to submodules
@@ -22,8 +20,14 @@ To do:
 		_ CAS
 		_ CEN_UTILS
 		_ PRI
-			_ PRI
-			_ DSC
+			X PRI
+			X DSC
+
+	_ convert docker apps to implement submodules (PHP shared library and CDS)
+		_ PLW
+		X PRI
+		_ Staff Info App
+
 	
 	_ chain in a quick preparation script that renames certain files (GIM_crontab.dev.txt) or references certain files
 		

@@ -1,0 +1,67 @@
+secrets:
+  pri_ria_db_username_secret:
+    external: false             # Disable "external" lookup (Swarm)
+    file: ../secrets/ria_user.txt # Read from local file instead
+  pri_ria_db_password_secret:
+    external: false
+    file: ../secrets/ria_pass.txt
+  pri_gim_db_username_secret:
+    external: false
+    file: ../secrets/gim_user.txt
+  pri_gim_db_password_secret:
+    external: false
+    file: ../secrets/gim_pass.txt
+  pri_git_api_key_secret:
+    external: false
+    file: ../secrets/git_key.txt
+
+services:
+  # Override pifsc-resource-inventory configuration
+  pifsc-resource-inventory:
+    # NETWORK: Join the database network
+    networks:
+      - oracle-net
+    build:
+      # Explicitly set the folder containing the Dockerfile
+      # Adjust this path if your Dockerfile is deeper (e.g., modules/PRI/docker)
+      context: ../modules/PRI
+      dockerfile: docker/Dockerfile
+    # DEPENDENCY: Wait for DB
+    depends_on:
+      db:
+        condition: service_healthy
+
+    volumes:
+      - ../modules/PRI/docker/src/frontend:/var/www/html
+      - ../modules/PRI/docker/src/backend/GIM:/usr/src/app/GIM
+      - ../modules/PRI/docker/src/backend/RIA:/usr/src/app/RIA
+      - ../modules/PRI/docker/src/backend/shared:/usr/src/app/shared
+      - ../modules/PRI/modules/php-shared-library:/usr/src/app/dependencies
+      - ../modules/PRI/modules/php-shared-library:/var/www/html/res/php-shared-library
+
+    environment:
+      # NETWORKING: Point to the 'db' service name from CODE
+      - DB_HOST=db
+      - DB_SERVICE_NAME=${DBSERVICENAME}
+      
+      # MODE: Ensure we keep the "stack" behavior for secrets, 
+      # even though local.dev.yml tries to set it to "compose"
+      - RUN_MODE=stack
+
+  # ----------------------------------------------------------------------
+  # 3. DEPLOY CONTAINER CONFIGURATION (Overrides db-ords-deploy)
+  # ----------------------------------------------------------------------
+  db-ords-deploy:
+    # MOUNT: Map the SQL files from the PRI submodule to where 
+    # the CODE deploy container expects to find them.
+    volumes:
+      - ../modules/DSC/SQL:/usr/src/DSC/SQL
+      - ../modules/PRI/shared_SQL:/usr/src/PRI/shared_SQL
+      - ../modules/PRI/RIA:/usr/src/PRI/RIA
+      - ../modules/PRI/GIM:/usr/src/PRI/GIM
+# ----------------------------------------------------------------------
+# 4. NETWORK DEFINITION
+# ----------------------------------------------------------------------
+networks:
+  oracle-net:
+    name: oracle-net
