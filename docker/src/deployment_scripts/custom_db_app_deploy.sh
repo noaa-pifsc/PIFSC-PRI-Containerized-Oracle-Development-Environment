@@ -35,11 +35,12 @@ sqlplus -s /nolog <<EOF
 $SYS_CREDENTIALS
 EOF
 
+echo "grant the PRI schema privileges on the DSC schema"
 
 	# grant the PRI schema privileges on the DSC schema
 sqlplus -s /nolog <<EOF
+CONNECT $SYS_CREDENTIALS
 @queries/grant_PRI_privs.sql
-$SYS_CREDENTIALS
 EOF
 
 
