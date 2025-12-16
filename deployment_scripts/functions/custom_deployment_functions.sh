@@ -1,39 +1,21 @@
 #!/bin/sh
 
 # function that deploys the containers for dev/test/prod environments
-deploy_dev_environment ()
+build_deploy_dev_environment ()
 {
-	# check the deployment environment:
-	if [[ ${ENV_NAME} == "dev" ]]; then
+	# build the list of compose files:
+	local COMPOSE_FILES=("--env-file" "./docker/.env")
+	COMPOSE_FILES+=("--env-file" "./secrets/.env")
+	COMPOSE_FILES+=("-f" "docker/CODE-db-deploy.yml")
 
-		echo "$ENV_NAME scenario - deploy with mounted resources"
-
-		# dev: build and execute the docker container for the development mounted volume scenario
-		docker compose \
-		  --env-file ./docker/.env \
-		  --env-file ./secrets/.env \
-		  -f docker/docker-compose-dev.yml \
-		  -f modules/PRI/docker/docker-compose.local.dev.yml \
-		  -f docker/docker-compose.integrated.yml \
-		  up -d --build --remove-orphans
-
-	else
-		# test/prod: deploy without mounted volumes for testing purposes
-		echo "$ENV_NAME scenario - deploy without mounted resources"
-		
-		# build and execute the docker container for the development swarm scenario
-		docker compose \
-		  --env-file ./docker/.env \
-		  --env-file ./secrets/.env \
-		  -f docker/docker-compose-test.yml \
-		  -f modules/PRI/docker/docker-compose.yml \
-		  -f docker/docker-compose.integrated.yml \
-		  up -d --build --remove-orphans
-		
+	if [ "$ENV_NAME" == "dev" ]; then
+		# this is intended for the development environment (retain database and ords volumes)
+		COMPOSE_FILES+=("-f" "docker/CODE-db-named-volumes.yml")
 	fi
+
+	COMPOSE_FILES+=("-f" "modules/PRI/docker/docker-compose.yml")
+	COMPOSE_FILES+=("-f" "docker/custom-docker-compose.yml")
+
+	# build and execute the docker container for the specified deployment environment:
+	docker compose "${COMPOSE_FILES[@]}" up -d --build
 }
-
-
-
-
-

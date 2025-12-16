@@ -19,18 +19,17 @@ secrets:
 services:
   # Override pifsc-resource-inventory configuration
   pifsc-resource-inventory:
-    # NETWORK: Join the database network
+    # specify the database network
     networks:
       - oracle-net
     build:
       # Explicitly set the folder containing the Dockerfile
-      # Adjust this path if your Dockerfile is deeper (e.g., modules/PRI/docker)
       context: ../modules/PRI
       dockerfile: docker/Dockerfile
-    # DEPENDENCY: Wait for DB
     depends_on:
       db:
         condition: service_healthy
+    # define the mounted volumes for the PRI apps
     volumes:
       - "pri_logs:/usr/src/app/logs"
       - "../modules/PRI/docker/src/frontend:/var/www/html"
@@ -41,8 +40,7 @@ services:
       - "../modules/PRI/modules/php-shared-library:/var/www/html/res/php-shared-library"
 
   db-ords-deploy:
-    # MOUNT: Map the SQL files from the PRI submodule to where 
-    # the CODE deploy container expects to find them.
+    # define the mounted volumes for the DB/Apex apps 
     volumes:
       - ../modules/DSC/SQL:/usr/src/DSC/SQL
       - ../modules/PRI/shared_SQL:/usr/src/PRI/shared_SQL

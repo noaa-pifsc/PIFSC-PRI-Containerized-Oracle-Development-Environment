@@ -1,3 +1,2 @@
-/docker/secrets/PRI_local_secrets.sh
-
-/secrets
+# don't manage the secret git api key in the repository
+/secrets/git_key.txt

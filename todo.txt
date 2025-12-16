@@ -4,7 +4,7 @@ To do:
 		X implement PRI and DSC as submodules
 		
 	_ preparation steps:
-		_ recurively clone the PRI CODE project
+		_ recursively clone the PRI CODE project
 		_ set the secret information in the correct place
 		_ set the secrets/.env file
 	_ deployment steps:	
@@ -14,27 +14,28 @@ To do:
 	
 		
 	bugs:
-		php-shared-library appears in the modules directory
+		_ php-shared-library appears in the modules directory
 		when running "dev stack": unsupported external secret pri_ria_db_username_secret
 
 	_ finish implementing/testing the deployment use cases:
-		_ local dev mounted volumes
+		X local dev mounted volumes
 			X implement the commands in the docker preparation/deployment script (see if we can leverage the existing code in PRI
 			
 			X use environment variables to set the DB credentials and API key
 		
-		_ local dev swarm with docker secrets
+		X local dev swarm with docker secrets
 			X implement the commands in the docker preparation/deployment script (see if we can leverage the existing code in PRI
 			
 			X use docker secrets to define the DB credentials and API key
 	
 	_ update documentation
-		_ dependencies:
+		X dependencies:
+			X container deployment scripts
 			X PRI
 				X container deployment scripts (used from PRI submodule)
 			X DSC
 
-		_ docker-compose.integrated.yml needs to map the volumes from submodule app and for DB deployments (sync with the custom_db_app_deploy.sh and custom_container_config.sh)
+		X custom-docker-compose.yml needs to map the volumes from submodule app and for DB deployments (sync with the custom_db_app_deploy.sh and custom_container_config.sh)
 		
 		
 	
@@ -105,13 +106,13 @@ git bash commands:
 		cd /c/Users/jesse.abdul/Documents/Version\ Control/Git/PIFSC-PRI-Containerized-Oracle-Development-Environment
 		
 		# shutdown all containers and delete all associated volumes too
-		docker-compose \
+		docker compose \
 		  --env-file ./docker/.env \
 		  --env-file ./secrets/.env \
-		  -f docker/docker-compose-dev.yml \
+		  -f docker/CODE-db-deploy.yml \
+		  -f docker/CODE-db-named-volumes.yml \
 		  -f modules/PRI/docker/docker-compose.yml \
-		  -f modules/PRI/docker/docker-compose.local.dev.yml \
-		  -f docker/docker-compose.integrated.yml \
+		  -f docker/custom-docker-compose.yml \
 		  down -v
 
 
@@ -125,11 +126,11 @@ git bash commands:
 		docker compose \
 		  --env-file ./docker/.env \
 		  --env-file ./secrets/.env \
-		  -f docker/docker-compose-dev.yml \
+		  -f docker/CODE-db-deploy.yml \
+		  -f docker/CODE-db-named-volumes.yml \
 		  -f modules/PRI/docker/docker-compose.yml \
-		  -f modules/PRI/docker/docker-compose.local.dev.yml \
-		  -f docker/docker-compose.integrated.yml \
-		  up -d --build --remove-orphans
+		  -f docker/custom-docker-compose.yml \
+		  up -d --build
 
 
 

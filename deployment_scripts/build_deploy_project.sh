@@ -7,15 +7,16 @@ cd "$(dirname "$(realpath "$0")")"/..
 source ./modules/pifsc-container-deployment-scripts/src/reusable_functions/shared_functions.sh
 source ./modules/pifsc-container-deployment-scripts/src/reusable_functions/client_functions.sh
 
-# load the custom CODE deployment function:
-source ./deployment_scripts/functions/custom_deployment_functions.sh
-
 # retrieve the ENV_NAME variable value from the first parameter or by prompting the user
 set_env_var "$1" 
 
+# load the custom CODE deployment function:
+source ./deployment_scripts/functions/custom_deployment_functions.sh
+
 echo "Deploy the containerized oracle development environment ($ENV_NAME)"
 
-deploy_dev_environment
+# build/deploy the CODE container
+build_deploy_dev_environment
 
 # notify the user that the container has finished executing
 echo "The $ENV_NAME docker container has finished building and is running"
