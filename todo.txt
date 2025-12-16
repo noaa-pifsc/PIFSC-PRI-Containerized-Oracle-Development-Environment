@@ -3,8 +3,58 @@ To do:
 	X update PRI CODE repo
 		X implement PRI and DSC as submodules
 		
+	_ preparation steps:
+		_ recurively clone the PRI CODE project
+		_ set the information for the API key in the appropriate place
+	_ deployment steps:	
+		_ execute the corresponding bash script
 		
-	_ fork DSC so the dependencies are available
+		
+	bugs:
+		php-shared-library appears in the modules directory
+
+
+	_ finish implementing/testing the deployment use cases:
+		_ local dev mounted volumes
+			X implement the commands in the docker preparation/deployment script (see if we can leverage the existing code in PRI
+			
+			X use environment variables to set the DB credentials and API key
+		
+		_ local dev swarm with docker secrets
+			X implement the commands in the docker preparation/deployment script (see if we can leverage the existing code in PRI
+			
+			X use docker secrets to define the DB credentials and API key
+	
+	_ update documentation
+		_ dependencies:
+			X PRI
+				X container deployment scripts (used from PRI submodule)
+			X DSC
+		
+		
+	
+	_ create a new custom_deployment_script (by default it will just have the simple docker compose build command with the appropriate .yml file)
+		_ use the CDS to prompt for environment name (this will allow the automation of choosing the .yml file)
+		_ for docker web apps this will be modified to do any merging of docker configurations
+		
+		
+	
+	
+		
+		
+		
+		
+	_ document that the clone needs to be recursive and that the submodule pulls need to be recursive too	
+		_ specifying stack will use secrets, specifying mount will use environment variables
+		_ document the parameter for the build_deploy_project.sh
+
+	_ update CODE
+		_ update DSC CODE
+			_ pull upstream changes into CUD
+			_ pull upstream changes into CAS
+	
+	
+	X fork DSC CODE so the dependencies are available
 		
 
 	X Dockerfile.deploy is not successfully converting line endings with dos2unix (there was an unreadable character that was preventing a file from being converted)
@@ -15,10 +65,15 @@ To do:
 			X Container Deployment Scripts
 
 
-	_ convert DB dependencies to submodules
+	_ CODE - convert DB dependencies to submodules
 		_ DSC
+			_ DSC
 		_ CAS
+			_ DSC
+			_ AAM
 		_ CEN_UTILS
+			_ centralized utilities
+			_ DSC
 		_ PRI
 			X PRI
 			X DSC
@@ -27,6 +82,9 @@ To do:
 		_ PLW
 		X PRI
 		_ Staff Info App
+		
+	_ CDS
+		_ update installation instructions to recommend implementing as a submodule
 
 	
 	_ chain in a quick preparation script that renames certain files (GIM_crontab.dev.txt) or references certain files
@@ -41,15 +99,10 @@ git bash commands:
 		# stop and remove CODE containers and delete volumes
 		cd /c/Users/jesse.abdul/Documents/Version\ Control/Git/PIFSC-PRI-Containerized-Oracle-Development-Environment
 		
-		docker-compose \
-		  --project-directory . \
-		  -f docker/docker-compose-dev.yml \
-		  -f pri_app_docker/docker-compose.local.dev.yml \
-		  down
-
-
 		# shutdown all containers and delete all associated volumes too
 		docker-compose \
+		  --env-file ./docker/.env \
+		  --env-file ./secrets/.env \
 		  -f docker/docker-compose-dev.yml \
 		  -f modules/PRI/docker/docker-compose.yml \
 		  -f modules/PRI/docker/docker-compose.local.dev.yml \
@@ -62,7 +115,7 @@ git bash commands:
 
 		
 		# build and deploy the development scenario of the CODE
-		bash build_deploy_project_dev.sh
+		bash ./deployment_scripts/build_deploy_project.sh dev
 
 		docker compose \
 		  --env-file ./docker/.env \

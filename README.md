@@ -1,18 +1,26 @@
-# PIFSC DSC Oracle Developer Environment
+# PIFSC PRI Oracle Developer Environment
 
 ## Overview
-The PIFSC DSC Oracle Developer Environment (DCODE) project was developed to provide a custom containerized Oracle development environment (CODE) for the DSC.  This repository can be forked to extend the existing functionality to any data systems that depend on the DSC for both development and testing purposes.  
+The PIFSC Resource Inventory (PRI) Oracle Developer Environment (PCODE) project was developed to provide a custom containerized Oracle development environment (CODE) for the DSC.  This repository can be forked to extend the existing functionality to any data systems that depend on the DSC for both development and testing purposes.  
 
 ## Resources
--   ### DCODE Version Control Information
-    -   URL: https://github.com/noaa-pifsc/PIFSC-DSC-Containerized-Oracle-Development-Environment
-    -   Version: 1.1 (git tag: DSC_CODE_v1.1)
+-   ### PCODE Version Control Information
+    -   URL: https://github.com/noaa-pifsc/PIFSC-PRI-Containerized-Oracle-Development-Environment
+    -   Version: 1.0 (git tag: PRI_CODE_v1.0)
     -   Upstream repository:
-        -   CODE Version Control Information:
-            -   URL: https://github.com/noaa-pifsc/PIFSC-Containerized-Oracle-Development-Environment?tab=readme-ov-file
-            -   Version: 1.1 (git tag: CODE_v1.1)
+        -   DCODE Version Control Information:
+            -   URL: https://github.com/noaa-pifsc/PIFSC-DSC-Containerized-Oracle-Development-Environment?tab=readme-ov-file
+            -   Version: 1.1 (git tag: DCODE_v1.1)
+
+## Dependencies
+-   ### PIFSC Resource Inventory
+    -   Version Control Information:
+        -   URL: <https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory.git>
+        -   Application: 1.8 (Git tag: PRI_docker_app_v1.8)
 -   ### DSC Version Control Information
-    -   URL: https://picgitlab.nmfs.local/centralized-data-tools/pifsc-dsc
+    -   Version Control Information:
+        -   URL: <git@picgitlab.nmfs.local:centralized-data-tools/pifsc-dsc.git>
+        -   Database: 1.1 (Git tag: dsc_db_v1.1)
 
 ## Prerequisites
 -   See the CODE [Prerequisites](https://github.com/noaa-pifsc/PIFSC-Containerized-Oracle-Development-Environment?tab=readme-ov-file#prerequisites) for details
