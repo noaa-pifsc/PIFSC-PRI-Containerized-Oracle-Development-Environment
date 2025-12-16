@@ -15,7 +15,7 @@ set_env_var "$1"
 
 echo "Deploy the containerized oracle development environment ($ENV_NAME)"
 
-deploy_dev_environment "$2"
+deploy_dev_environment
 
 # notify the user that the container has finished executing
 echo "The $ENV_NAME docker container has finished building and is running"

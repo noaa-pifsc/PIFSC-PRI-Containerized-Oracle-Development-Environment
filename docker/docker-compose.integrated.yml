@@ -1,3 +1,21 @@
+# override the secrets configuration
+secrets:
+  pri_ria_db_username_secret:
+    external: false
+    file: ../secrets/ria_user.txt
+  pri_ria_db_password_secret:
+    external: false
+    file: ../secrets/ria_pass.txt
+  pri_gim_db_username_secret:
+    external: false
+    file: ../secrets/gim_user.txt
+  pri_gim_db_password_secret:
+    external: false
+    file: ../secrets/gim_pass.txt
+  pri_git_api_key_secret:
+    external: false
+    file: ../secrets/git_key.txt
+    
 services:
   # Override pifsc-resource-inventory configuration
   pifsc-resource-inventory:

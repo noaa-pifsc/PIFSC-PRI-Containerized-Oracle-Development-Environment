@@ -5,14 +5,17 @@ To do:
 		
 	_ preparation steps:
 		_ recurively clone the PRI CODE project
-		_ set the information for the API key in the appropriate place
+		_ set the secret information in the correct place
+		_ set the secrets/.env file
 	_ deployment steps:	
 		_ execute the corresponding bash script
 		
 		
+	
+		
 	bugs:
 		php-shared-library appears in the modules directory
-
+		when running "dev stack": unsupported external secret pri_ria_db_username_secret
 
 	_ finish implementing/testing the deployment use cases:
 		_ local dev mounted volumes
@@ -30,6 +33,8 @@ To do:
 			X PRI
 				X container deployment scripts (used from PRI submodule)
 			X DSC
+
+		_ docker-compose.integrated.yml needs to map the volumes from submodule app and for DB deployments (sync with the custom_db_app_deploy.sh and custom_container_config.sh)
 		
 		
 	
