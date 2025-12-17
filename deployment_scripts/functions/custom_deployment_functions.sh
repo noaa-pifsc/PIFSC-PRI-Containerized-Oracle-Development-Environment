@@ -4,16 +4,24 @@
 build_deploy_dev_environment ()
 {
 	# build the list of compose files:
+	
+	# include the docker environment variables
 	local COMPOSE_FILES=("--env-file" "./docker/.env")
 	COMPOSE_FILES+=("--env-file" "./secrets/.env")
+
+	# include the db and db-ords-deploy services
 	COMPOSE_FILES+=("-f" "docker/CODE-db-deploy.yml")
 
+	# check if this is intended for a dev environment (retain database and ords volumes across container restarts) 
 	if [ "$ENV_NAME" == "dev" ]; then
-		# this is intended for the development environment (retain database and ords volumes)
-		COMPOSE_FILES+=("-f" "docker/CODE-db-named-volumes.yml")
+		# add in the named volume for the db service
+		COMPOSE_FILES+=("-f" "docker/CODE-db-named-volume.yml")
 	fi
-
+	
+	# include pifsc-resource-inventory service for the docker web application
 	COMPOSE_FILES+=("-f" "modules/PRI/docker/docker-compose.yml")
+	
+	# add custom docker compose to integrate additional services and/or map project-specific resources for the db-ords-deploy service to automatically deploy
 	COMPOSE_FILES+=("-f" "docker/custom-docker-compose.yml")
 
 	# build and execute the docker container for the specified deployment environment:

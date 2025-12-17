@@ -10,7 +10,7 @@ The PIFSC Resource Inventory (PRI) Oracle Developer Environment (PCODE) project 
     -   Upstream repository:
         -   DCODE Version Control Information:
             -   URL: https://github.com/noaa-pifsc/PIFSC-DSC-Containerized-Oracle-Development-Environment
-            -   Version: 1.1 (git tag: DCODE_v1.1)
+            -   Version: 1.2 (git tag: DCODE_v1.2)
 
 ## Dependencies
 \* Note: all dependencies are implemented as git submodules in the [modules](./modules) folder

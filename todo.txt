@@ -73,21 +73,31 @@ To do:
 
 	_ CODE - convert DB dependencies to submodules
 		_ DSC
-			_ DSC
+			X DSC
 		_ CAS
 			_ DSC
 			_ AAM
 		_ CEN_UTILS
 			_ centralized utilities
 			_ DSC
-		_ PRI
+		X PRI
 			X PRI
 			X DSC
+			
+	_ update fork diagram 
+		_ include PRI (non-apex apps)
+		_ include CUD
+		
+		
+	_ delete the CODE repos off of GitLab (confirm they are in GitHub first)
 
 	_ convert docker apps to implement submodules (PHP shared library and CDS)
 		_ PLW
+			_ implement as docker compose with CODE
 		X PRI
+			X implement as docker compose with CODE
 		_ Staff Info App
+			_ implement as docker compose with CODE
 		
 	_ CDS
 		_ update installation instructions to recommend implementing as a submodule
@@ -110,7 +120,7 @@ git bash commands:
 		  --env-file ./docker/.env \
 		  --env-file ./secrets/.env \
 		  -f docker/CODE-db-deploy.yml \
-		  -f docker/CODE-db-named-volumes.yml \
+		  -f docker/CODE-db-named-volume.yml \
 		  -f modules/PRI/docker/docker-compose.yml \
 		  -f docker/custom-docker-compose.yml \
 		  down -v
@@ -127,7 +137,7 @@ git bash commands:
 		  --env-file ./docker/.env \
 		  --env-file ./secrets/.env \
 		  -f docker/CODE-db-deploy.yml \
-		  -f docker/CODE-db-named-volumes.yml \
+		  -f docker/CODE-db-named-volume.yml \
 		  -f modules/PRI/docker/docker-compose.yml \
 		  -f docker/custom-docker-compose.yml \
 		  up -d --build
