@@ -3,21 +3,21 @@ To do:
 	X update PRI CODE repo
 		X implement PRI and DSC as submodules
 		
-	_ preparation steps:
-		_ recursively clone the PRI CODE project
-		_ set the secret information in the correct place
-		_ set the secrets/.env file
-	_ deployment steps:	
-		_ execute the corresponding bash script
+	X preparation steps:
+		X recursively clone the PRI CODE project
+		X set the secret information in the correct place
+		X set the secrets/.env file
+	X deployment steps:	
+		X execute the corresponding bash script
 		
 		
 	
 		
 	bugs:
 		_ php-shared-library appears in the modules directory
-		when running "dev stack": unsupported external secret pri_ria_db_username_secret
+		X when running "dev stack": unsupported external secret pri_ria_db_username_secret
 
-	_ finish implementing/testing the deployment use cases:
+	X finish implementing/testing the deployment use cases:
 		X local dev mounted volumes
 			X implement the commands in the docker preparation/deployment script (see if we can leverage the existing code in PRI
 			
@@ -28,20 +28,19 @@ To do:
 			
 			X use docker secrets to define the DB credentials and API key
 	
-	_ update documentation
+	X update documentation
 		X dependencies:
 			X container deployment scripts
 			X PRI
-				X container deployment scripts (used from PRI submodule)
 			X DSC
 
 		X custom-docker-compose.yml needs to map the volumes from submodule app and for DB deployments (sync with the custom_db_app_deploy.sh and custom_container_config.sh)
 		
 		
 	
-	_ create a new custom_deployment_script (by default it will just have the simple docker compose build command with the appropriate .yml file)
-		_ use the CDS to prompt for environment name (this will allow the automation of choosing the .yml file)
-		_ for docker web apps this will be modified to do any merging of docker configurations
+	X create a new custom_deployment_script (by default it will just have the simple docker compose build command with the appropriate .yml file)
+		X use the CDS to prompt for environment name (this will allow the automation of choosing the .yml file)
+		X for docker web apps this will be modified to do any merging of docker configurations
 		
 		
 	
@@ -50,9 +49,9 @@ To do:
 		
 		
 		
-	_ document that the clone needs to be recursive and that the submodule pulls need to be recursive too	
+	X document that the clone needs to be recursive and that the submodule pulls need to be recursive too	
 		_ specifying stack will use secrets, specifying mount will use environment variables
-		_ document the parameter for the build_deploy_project.sh
+		X document the parameter for the build_deploy_project.sh
 
 	_ update CODE
 		_ update DSC CODE
@@ -71,22 +70,56 @@ To do:
 			X Container Deployment Scripts
 
 
-	_ CODE - convert DB dependencies to submodules
-		_ DSC
+_ Convert dependencies to submodules:
+	X CODE
+		X update documentation
+		X test scenarios
+		X push changes to github
+
+		forks:
 			X DSC
-		_ CAS
-			_ DSC
-			_ AAM
-		_ CEN_UTILS
-			_ centralized utilities
-			_ DSC
-		X PRI
+				X DSC
+				X update documentation
+				X test scenarios
+				_ documentation:
+					update the documentation with the CDS github link and folder paths for all submodules
+					update the path to modules/CDS
+				_ code updates:
+					update the path to modules/CDS
+			_ CAS
+				X DSC
+				X AAM
+				X update documentation
+				_ test scenarios
+				_ documentation:
+					update the documentation with the CDS github link and folder paths for all submodules
+					update the path to modules/CDS
+				_ code updates:
+					update the path to modules/CDS
+			X CEN_UTILS
+				X centralized utilities
+				X DSC
+				X update documentation
+				X test scenarios
+				_ documentation:
+					update the documentation with the CDS github link and folder paths for all submodules
+					update the path to modules/CDS
+				_ code updates:
+					update the path to modules/CDS
 			X PRI
-			X DSC
+				X PRI
+				X DSC
+				X update documentation
+				_ test scenarios
+				_ documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				_ code updates:
+					X update the path to modules/CDS
 			
-	_ update fork diagram 
-		_ include PRI (non-apex apps)
-		_ include CUD
+	X update fork diagram 
+		X include PRI (non-apex apps)
+		X include CUD
 		
 		
 	_ delete the CODE repos off of GitLab (confirm they are in GitHub first)
@@ -101,10 +134,20 @@ To do:
 		
 	_ CDS
 		_ update installation instructions to recommend implementing as a submodule
-
+		_ migrate to github
+			_ update all submodule implementations:
+				_ PRI
+				_ CODE
+				_ PRI CODE
+				_ CAS CODE
+				_ DSC CODE
+				_ CU CODE
+				_ LHP CODE
+				
 	
-	_ chain in a quick preparation script that renames certain files (GIM_crontab.dev.txt) or references certain files
-		
+	
+	X chain in a quick preparation script that renames certain files (GIM_crontab.dev.txt) or references certain files
+		X implemented this as a environment variable instead to ensure images are the same between environments
 
 
 

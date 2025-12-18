@@ -15,17 +15,20 @@ The PIFSC Resource Inventory (PRI) Oracle Developer Environment (PCODE) project 
 ## Dependencies
 \* Note: all dependencies are implemented as git submodules in the [modules](./modules) folder
 -   ### PRI Version Control Information
+    -   folder path: [modules/PRI](./modules/PRI)
     -   Version Control Information:
         -   URL: <https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory.git>
         -   Application: 1.8 (Git tag: PRI_docker_app_v1.8)
 -   ### DSC Version Control Information
+    -   folder path: [modules/DSC](./modules/DSC)
     -   Version Control Information:
         -   URL: <git@picgitlab.nmfs.local:centralized-data-tools/pifsc-dsc.git>
         -   Database: 1.1 (Git tag: dsc_db_v1.1)
 -   ### Container Deployment Scripts (CDS) Version Control Information
+    -   folder path: [modules/CDS](./modules/CDS)
     -   Version Control Information:
-        -   URL: <git@picgitlab.nmfs.local:centralized-data-tools/pifsc-container-deployment-scripts.git>
-        -   Database: 1.1 (Git tag: pifsc_container_deployment_scripts_v1.1)
+        -   URL: <git@github.com:noaa-pifsc/PIFSC-Container-Deployment-Scripts.git>
+        -   Scripts: 1.1 (Git tag: pifsc_container_deployment_scripts_v1.1)
 
 ## Prerequisites
 -   See the CODE [Prerequisites](https://github.com/noaa-pifsc/PIFSC-Containerized-Oracle-Development-Environment?tab=readme-ov-file#prerequisites) for details
@@ -78,3 +81,9 @@ The PIFSC Resource Inventory (PRI) Oracle Developer Environment (PCODE) project 
     -   Connection information can be found in [create_docker_schemas.sql](https://picgitlab.nmfs.local/centralized-data-tools/pifsc-dsc/-/blob/main/SQL/dev_container_setup/create_docker_schemas.sql?ref_type=heads)
 -   ### PRI Database Connection Information
     -   Connection information can be found in [create_docker_schemas.sql](https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory/-/blob/master/shared_SQL/dev_container_setup/create_docker_schemas.sql?ref_type=heads)
+
+## License
+See the [LICENSE.md](./LICENSE.md) for details
+
+## Disclaimer
+This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
