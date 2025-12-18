@@ -106,16 +106,18 @@ _ Convert dependencies to submodules:
 					update the path to modules/CDS
 				_ code updates:
 					update the path to modules/CDS
+					update URL to github for CDS
 			X PRI
 				X PRI
 				X DSC
 				X update documentation
 				_ test scenarios
-				_ documentation:
+				X documentation:
 					X update the documentation with the CDS github link and folder paths for all submodules
 					X update the path to modules/CDS
-				_ code updates:
+				X code updates:
 					X update the path to modules/CDS
+					X update URL to github for CDS
 			
 	X update fork diagram 
 		X include PRI (non-apex apps)
@@ -133,16 +135,17 @@ _ Convert dependencies to submodules:
 			_ implement as docker compose with CODE
 		
 	_ CDS
-		_ update installation instructions to recommend implementing as a submodule
-		_ migrate to github
+		X update installation instructions to recommend implementing as a submodule
+		X migrate to github
 			_ update all submodule implementations:
-				_ PRI
+				X PRI
 				_ CODE
-				_ PRI CODE
+				X PRI CODE
 				_ CAS CODE
 				_ DSC CODE
 				_ CU CODE
 				_ LHP CODE
+				_ Container Maintenance Scripts
 				
 	
 	

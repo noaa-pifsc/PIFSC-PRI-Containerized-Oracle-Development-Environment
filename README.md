@@ -41,7 +41,7 @@ The PIFSC Resource Inventory (PRI) Oracle Developer Environment (PCODE) project 
 
 ## Automated Deployment Process
 -   ### Prepare the project
-    -   Recursively clone the [PCODE repository](#pcode-version-control-information) to a working directory
+    -   Recursively clone (use --recurse-submodules option) the [PCODE repository](#pcode-version-control-information) to a working directory
     -   (optional) Update the [.env](./secrets/.env) custom environment variables accordingly for the PRI app
     -   Create the git_key.txt in the [secrets](./secrets) folder with a git API key to authenticate requests to the git API. 
         -   [git_key.template.txt](./secrets/git_key.template.txt) is a template available that can be renamed to define the secret
