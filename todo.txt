@@ -75,49 +75,75 @@ _ Convert dependencies to submodules:
 		X update documentation
 		X test scenarios
 		X push changes to github
+		X update the documentation with the CDS github link and folder paths for all submodules
+			X update the path to modules/CDS
 
 		forks:
 			X DSC
+				X pull upstream changes from CODE
+				X merge changes and tag revision
 				X DSC
 				X update documentation
-				X test scenarios
-				_ documentation:
-					update the documentation with the CDS github link and folder paths for all submodules
-					update the path to modules/CDS
-				_ code updates:
-					update the path to modules/CDS
-			_ CAS
+				X test scenarios (12/18)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
+			X CAS
+				X pull upstream changes from DSC
+				X merge changes and tag revision
 				X DSC
 				X AAM
 				X update documentation
-				_ test scenarios
-				_ documentation:
-					update the documentation with the CDS github link and folder paths for all submodules
-					update the path to modules/CDS
-				_ code updates:
-					update the path to modules/CDS
+				X test scenarios (12/18/25)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
 			X CEN_UTILS
+				X pull upstream changes from DSC
+				X merge changes and tag revision
 				X centralized utilities
 				X DSC
 				X update documentation
-				X test scenarios
-				_ documentation:
-					update the documentation with the CDS github link and folder paths for all submodules
-					update the path to modules/CDS
-				_ code updates:
-					update the path to modules/CDS
-					update URL to github for CDS
+				X test scenarios (12/18/25)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
 			X PRI
+				_ pull upstream changes from DSC
+				_ merge changes and tag revision
+				X update modules/PRI to point to head revision in main branch
 				X PRI
 				X DSC
 				X update documentation
-				_ test scenarios
+				X test scenarios (12/18)
 				X documentation:
 					X update the documentation with the CDS github link and folder paths for all submodules
 					X update the path to modules/CDS
 				X code updates:
 					X update the path to modules/CDS
 					X update URL to github for CDS
+			_ LHP
+				_ pull upstream changes from CU
+				_ merge changes and tag revision
+				implemented dependencies:
+					X LHP
+					X CDS
+					X CU
+					X DSC
+				X update documentation
+				X_ test scenarios (12/18/25)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
+
 			
 	X update fork diagram 
 		X include PRI (non-apex apps)
@@ -125,6 +151,13 @@ _ Convert dependencies to submodules:
 		
 		
 	_ delete the CODE repos off of GitLab (confirm they are in GitHub first)
+		CODE
+		PRI
+		CAS
+		DSC
+		CU
+		
+
 
 	_ convert docker apps to implement submodules (PHP shared library and CDS)
 		_ PLW
@@ -139,12 +172,12 @@ _ Convert dependencies to submodules:
 		X migrate to github
 			_ update all submodule implementations:
 				X PRI
-				_ CODE
+				X CODE
 				X PRI CODE
-				_ CAS CODE
-				_ DSC CODE
-				_ CU CODE
-				_ LHP CODE
+				X CAS CODE
+				X DSC CODE
+				X CU CODE
+				X LHP CODE
 				_ Container Maintenance Scripts
 				
 	
