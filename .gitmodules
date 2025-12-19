@@ -1,0 +1,9 @@
+[submodule "modules/PRI"]
+	path = modules/PRI
+	url = git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git
+[submodule "modules/DSC"]
+	path = modules/DSC
+	url = git@picgitlab.nmfs.local:centralized-data-tools/pifsc-dsc.git
+[submodule "modules/CDS"]
+	path = modules/CDS
+	url = git@github.com:noaa-pifsc/PIFSC-Container-Deployment-Scripts.git

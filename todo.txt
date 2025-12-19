@@ -1,89 +1,235 @@
-X merge upstream changes from branch_implement_upgradable_ords_apex
-	X test new functionality 
-		X ords
-		X apex
-		X database
+To do:
 
-	X update .gitignore
-
-	X update documentation
+	X update PRI CODE repo
+		X implement PRI and DSC as submodules
+		
+	X preparation steps:
+		X recursively clone the PRI CODE project
+		X set the secret information in the correct place
+		X set the secrets/.env file
+	X deployment steps:	
+		X execute the corresponding bash script
+		
+		
 	
+		
+	bugs:
+		_ php-shared-library appears in the modules directory
+		X when running "dev stack": unsupported external secret pri_ria_db_username_secret
 
-X test the different deployment/restart scenarios (tests completed on 12/2/25)
-	X dev
-		X new deployment
-			X apex
-				X (error message) TARGET_APEX_VERSION invalid version (regexp validation - e.g. 24.0.0)
-				X (error message) TARGET_APEX_VERSION invalid version (oracle site does not have the intaller - e.g. 24.0, 9.99)
-				X valid APEX (successful and reset admin password to ${ORACLE_PWD}
-					X login to workspace
-					X db
-						X DSC DB schema works
-						X login to SYS
-						X login to SYSTEM
-					X ords
-						X configure DSC for ORDS
-						X publish DSC_SYS_PARAMS as an endpoint
-						X confirm records can be retrieved
-		X restart
-			X change APEX version
-				X TARGET_APEX_VERSION invalid version (regexp validation - e.g. 24.0.0)
-				X (error message) downgrade (e.g. 23.1, 22.1)
-				X (error message) TARGET_APEX_VERSION invalid version (oracle site does not have the intaller - e.g. 24.0, 9.99)
-				X APEX upgrade (successful and reset admin password to ${ORACLE_PWD}
-					X Does not redeploy DB 
-					X login to workspace
-					X db
-						X DSC DB schema works
-						X login to SYS
-						X login to SYSTEM
-					X ords
-						X confirm records can be retrieved
-			X leave APEX version unchanged
-				X Does not redeploy DB 
-				X login to workspace (password unchanged)
-				X db
-					X CAS DB schema works
-					X login to SYS
-					X login to SYSTEM
-					X ords
-						X confirm records can be retrieved
-	X test (does not save database volume)
-		X apex
-			X (error message) TARGET_APEX_VERSION invalid version (regexp validation - e.g. 24.0.0)
-			X (error message) TARGET_APEX_VERSION invalid version (oracle site does not have the intaller - e.g. 24.0, 9.99)
-			X valid APEX (successful upgrade and reset admin password to ${ORACLE_PWD}
-				X login to workspace
-				X db
-					X DSC DB schema works
-					X login to SYS
-					X login to SYSTEM
-				X ords
-					X configure DSC for ORDS
-					X publish DSC_SYS_PARAMS as an endpoint
-					X confirm records can be retrieved
+	X finish implementing/testing the deployment use cases:
+		X local dev mounted volumes
+			X implement the commands in the docker preparation/deployment script (see if we can leverage the existing code in PRI
+			
+			X use environment variables to set the DB credentials and API key
+		
+		X local dev swarm with docker secrets
+			X implement the commands in the docker preparation/deployment script (see if we can leverage the existing code in PRI
+			
+			X use docker secrets to define the DB credentials and API key
+	
+	X update documentation
+		X dependencies:
+			X container deployment scripts
+			X PRI
+			X DSC
+
+		X custom-docker-compose.yml needs to map the volumes from submodule app and for DB deployments (sync with the custom_db_app_deploy.sh and custom_container_config.sh)
+		
+		
+	
+	X create a new custom_deployment_script (by default it will just have the simple docker compose build command with the appropriate .yml file)
+		X use the CDS to prompt for environment name (this will allow the automation of choosing the .yml file)
+		X for docker web apps this will be modified to do any merging of docker configurations
+		
+		
+	
+	
+		
+		
+		
+		
+	X document that the clone needs to be recursive and that the submodule pulls need to be recursive too	
+		X document the parameter for the build_deploy_project.sh
+
+
+	X fork DSC CODE so the dependencies are available
+		
+
+	X Dockerfile.deploy is not successfully converting line endings with dos2unix (there was an unreadable character that was preventing a file from being converted)
+
+	convert to submodule:
+		X PRI (update the custom prep script to not clone the php shared library and for the Dockerfile to copy it from the modules directory)
+			X php shared library
+			X Container Deployment Scripts
+
+
+_ Convert dependencies to submodules:
+	X CODE
+		X update documentation
+		X test scenarios
+		X push changes to github
+		X update the documentation with the CDS github link and folder paths for all submodules
+			X update the path to modules/CDS
+
+		forks:
+			X DSC
+				X pull upstream changes from CODE
+				X merge changes and tag revision
+				X DSC
+				X update documentation
+				X test scenarios (12/18)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
+			X CAS
+				X pull upstream changes from DSC
+				X merge changes and tag revision
+				X DSC
+				X AAM
+				X update documentation
+				X test scenarios (12/18/25)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
+			X CEN_UTILS
+				X pull upstream changes from DSC
+				X merge changes and tag revision
+				X centralized utilities
+				X DSC
+				X update documentation
+				X test scenarios (12/18/25)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
+			X PRI
+				X pull upstream changes from DSC CODE
+				X merge changes and tag revision
+				X update modules/PRI to point to head revision in main branch
+				X PRI
+				X DSC
+				X update documentation
+				X test scenarios (12/18)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
+					X update URL to github for CDS
+			_ LHP
+				_ pull upstream changes from CU
+				_ merge changes and tag revision
+				implemented dependencies:
+					X LHP
+					X CDS
+					X CU
+					X DSC
+				X update documentation
+				X_ test scenarios (12/18/25)
+				X documentation:
+					X update the documentation with the CDS github link and folder paths for all submodules
+					X update the path to modules/CDS
+				X code updates:
+					X update the path to modules/CDS
+
+			
+	X update fork diagram 
+		X include PRI (non-apex apps)
+		X include CUD
+		
+		
+	_ delete the CODE repos off of GitLab (confirm they are in GitHub first)
+		CODE
+		PRI
+		CAS
+		DSC
+		CU
+		
+
+
+	_ convert docker apps to implement submodules (PHP shared library and CDS)
+		_ PLW
+			_ implement as docker compose with CODE
+		X PRI
+			X implement as docker compose with CODE
+		_ Staff Info App
+			_ implement as docker compose with CODE
+		
+	_ CDS
+		X update installation instructions to recommend implementing as a submodule
+		X migrate to github
+			_ update all submodule implementations:
+				X PRI
+				X CODE
+				X PRI CODE
+				X CAS CODE
+				X DSC CODE
+				X CU CODE
+				X LHP CODE
+				_ Container Maintenance Scripts
+				
+	
+	
+	X chain in a quick preparation script that renames certain files (GIM_crontab.dev.txt) or references certain files
+		X implemented this as a environment variable instead to ensure images are the same between environments
+
+
 
 git bash commands:
 
 	# Dev:
 
 		# stop and remove CODE containers and delete volumes
-		cd /c/Users/jesse.abdul/Documents/Version\ Control/Git/PIFSC-DSC-Containerized-Oracle-Development-Environment/deployment_scripts
+		cd /c/Users/jesse.abdul/Documents/Version\ Control/Git/PIFSC-PRI-Containerized-Oracle-Development-Environment
 		
-		docker compose -f ../docker/docker-compose-dev.yml down
-		docker volume rm apex-static-vol
-		docker volume rm db-vol
+		# shutdown all containers and delete all associated volumes too
+		docker compose \
+		  --env-file ./docker/.env \
+		  --env-file ./secrets/.env \
+		  -f docker/CODE-db-deploy.yml \
+		  -f docker/CODE-db-named-volume.yml \
+		  -f modules/PRI/docker/docker-compose.yml \
+		  -f docker/custom-docker-compose.yml \
+		  down -v
+
+
+
+
+
 		
 		# build and deploy the development scenario of the CODE
-		bash build_deploy_project_dev.sh
-	
+		bash ./deployment_scripts/build_deploy_project.sh dev
+
+		docker compose \
+		  --env-file ./docker/.env \
+		  --env-file ./secrets/.env \
+		  -f docker/CODE-db-deploy.yml \
+		  -f docker/CODE-db-named-volume.yml \
+		  -f modules/PRI/docker/docker-compose.yml \
+		  -f docker/custom-docker-compose.yml \
+		  up -d --build
+
+
+
 	# Test:
 
 		# stop and remove CODE containers and delete volumes
-		cd /c/Users/jesse.abdul/Documents/Version\ Control/Git/PIFSC-DSC-Containerized-Oracle-Development-Environment/deployment_scripts
+		cd /c/Users/jesse.abdul/Documents/Version\ Control/Git/PIFSC-PRI-Containerized-Oracle-Development-Environment/deployment_scripts
 		
 		docker compose -f ../docker/docker-compose-test.yml down
 		docker volume rm apex-static-vol
 
 		# build and deploy the test scenario of the CODE
-		bash build_deploy_project_test.sh
+		docker-compose \
+		  --project-directory . \
+		  -f docker/docker-compose-test.yml \
+		  -f pri_app_docker/docker-compose.yml \
+		  down
+
+troubleshooting tips:
