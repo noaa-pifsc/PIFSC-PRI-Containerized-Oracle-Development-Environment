@@ -115,7 +115,7 @@ _ Convert dependencies to submodules:
 				X code updates:
 					X update the path to modules/CDS
 			X PRI
-				_ pull upstream changes from DSC
+				_ pull upstream changes from DSC CODE
 				_ merge changes and tag revision
 				X update modules/PRI to point to head revision in main branch
 				X PRI
