@@ -50,15 +50,9 @@ To do:
 		
 		
 	X document that the clone needs to be recursive and that the submodule pulls need to be recursive too	
-		_ specifying stack will use secrets, specifying mount will use environment variables
 		X document the parameter for the build_deploy_project.sh
 
-	_ update CODE
-		_ update DSC CODE
-			_ pull upstream changes into CUD
-			_ pull upstream changes into CAS
-	
-	
+
 	X fork DSC CODE so the dependencies are available
 		
 
@@ -115,8 +109,8 @@ _ Convert dependencies to submodules:
 				X code updates:
 					X update the path to modules/CDS
 			X PRI
-				_ pull upstream changes from DSC CODE
-				_ merge changes and tag revision
+				X pull upstream changes from DSC CODE
+				X merge changes and tag revision
 				X update modules/PRI to point to head revision in main branch
 				X PRI
 				X DSC
